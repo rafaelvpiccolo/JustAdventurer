@@ -3,12 +3,12 @@
 function PlayerState_Attack_Combo(){
 	ProccessAttack(spriteAttack2, spriteAttack2HB, 2);
 	
-	if(key_attack) && (image_index > 3) {
+	if(key_attack) && (image_index >= 4) {
 		state = PLAYERSTATE.ATTACK_FINISHER;
 	}
 	
 	if(animationEnd()) {
-		sprite_index = spriteIdle;
+		//sprite_index = spriteIdle;
 		state = PLAYERSTATE.FREE;
 	}
 }

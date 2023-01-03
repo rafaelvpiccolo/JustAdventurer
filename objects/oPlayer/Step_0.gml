@@ -12,8 +12,14 @@ switch(state){
 	break;
 	case PLAYERSTATE.ATTACK_SLASH : PlayerState_Attack_Slash();
 	break;
-	case PLAYERSTATE.ATTACK_COMBO : PlayerState_Attack_Combo();
+	case PLAYERSTATE.ATTACK_SLASH_AIR : PlayerState_Attack_Slash_Air();
+	break;
+	case PLAYERSTATE.ATTACK_COMBO : PlayerState_Attack_Combo_Air();
+	break;
+	case PLAYERSTATE.ATTACK_COMBO_AIR : PlayerState_Attack_Combo_Air();
 	break;
 	case PLAYERSTATE.ATTACK_FINISHER : PlayerState_Attack_Finisher();
+	break;
+	case PLAYERSTATE.ATTACK_FINISHER_AIR : PlayerState_Attack_Finisher_Air();
 	break;
 }

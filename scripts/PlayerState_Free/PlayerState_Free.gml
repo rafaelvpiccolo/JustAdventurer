@@ -38,6 +38,7 @@ y = y + vsp;
 
 //Animation
 if(!onTheFloor) {
+	if(key_attack) state = PLAYERSTATE.ATTACK_SLASH_AIR;
 	if(sign(vsp) > 0) {
 		sprite_index = spriteFall;
 	}

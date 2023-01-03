@@ -27,7 +27,10 @@ function PlayerState_Slide() {
 		mask_index = sPlayerS_Slide;
 		image_index = 0;
 	}
-	if(animationEnd()) {
+	if(place_meeting(x, y - 10, oWall)) {
+		if(image_index >= 2) image_index = 0;
+	}
+	else if(animationEnd()) {
 		canSlide = false;
 		mask_index = spriteIdle;
 		state = PLAYERSTATE.FREE;

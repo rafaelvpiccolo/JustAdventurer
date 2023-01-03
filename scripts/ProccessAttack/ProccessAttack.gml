@@ -1,8 +1,14 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function ProccessAttack(spriteAttack, spriteAttackHB, damage){
+function ProccessAttack(spriteAttack, spriteAttackHB, damage, airBorne = false){
 	var _move = key_right - key_left;
 	hsp = _move * .5;
+	if(place_meeting(x + hsp, y, oWall)) {
+		while(!place_meeting(x + sign(hsp), y, oWall)) {
+			x = x + sign(hsp);
+		}
+	hsp = 0;
+	}
 	x = x + hsp;
 	if(hsp != 0) image_xscale = sign(hsp);
 	

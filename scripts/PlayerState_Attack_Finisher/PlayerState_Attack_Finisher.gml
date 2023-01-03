@@ -4,7 +4,7 @@ function PlayerState_Attack_Finisher(){
 	ProccessAttack(spriteAttack3, spriteAttack3HB, 5);
 	
 	if(animationEnd()) {
-		sprite_index = spriteIdle;
+		//sprite_index = spriteIdle;
 		state = PLAYERSTATE.FREE;
 	}
 }
