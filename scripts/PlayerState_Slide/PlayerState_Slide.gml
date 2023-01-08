@@ -1,7 +1,8 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function PlayerState_Slide() {
-	hsp = image_xscale * 5;
+	if(hasSword) hsp = image_xscale * (wlksp + 1);
+	else hsp = image_xscale * (runsp + 1);
 	vsp = vsp + grvt;
 	
 	//Horizontal Collision
@@ -22,10 +23,10 @@ function PlayerState_Slide() {
 	}
 	y = y + vsp;
 	
-	if(sprite_index != sPlayerS_Slide) {
-		sprite_index = sPlayerS_Slide;
-		mask_index = sPlayerS_Slide;
+	if(sprite_index != spriteSlide) {
 		image_index = 0;
+		sprite_index = spriteSlide;
+		mask_index = spriteSlide;
 	}
 	if(place_meeting(x, y - 10, oWall)) {
 		if(image_index >= 2) image_index = 0;

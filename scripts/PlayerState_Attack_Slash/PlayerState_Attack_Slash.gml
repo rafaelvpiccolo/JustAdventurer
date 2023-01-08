@@ -2,14 +2,15 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function PlayerState_Attack_Slash(){
 	
-	ProccessAttack(spriteAttack1, spriteAttack1HB, 1);
+	ProccessAttack(sPlayerA1_FloorS, sPlayerA1_FloorSHB, 2);
 	
-	if(key_attack) && (image_index >= 4) {
+	if(key_attack) && (image_index > 2) && (attackDelay == true) {
+		attackDelay = false;
 		state = PLAYERSTATE.ATTACK_COMBO;
+		oPlayer.alarm[2] = 4;
 	}
 	
 	if(animationEnd()) {
-		//sprite_index = spriteIdle;
 		state = PLAYERSTATE.FREE;
 	}
 }

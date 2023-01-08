@@ -1,0 +1,11 @@
+back1 = layer_get_id("Backgrounds_1");
+back2 = layer_get_id("Backgrounds_2");
+back3 = layer_get_id("Backgrounds_3");
+back4 = layer_get_id("Backgrounds_4");
+back5 = layer_get_id("Backgrounds_5");
+back6 = layer_get_id("Backgrounds_6");
+back7 = layer_get_id("Backgrounds_7");
+back8 = layer_get_id("Backgrounds_8");
+back9 = layer_get_id("Backgrounds_9");
+back10 = layer_get_id("Backgrounds_10");
+back11 = layer_get_id("Backgrounds_11");

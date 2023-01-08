@@ -3,9 +3,11 @@
 function PlayerState_Free(){
 //Calculate Movement
 var _move = key_right - key_left;
-
-hsp = _move * wlksp;
+if(hasSword) hsp = _move * wlksp;
+else hsp = _move * runsp;
 vsp = vsp + grvt;
+
+if(hsp != 0) image_xscale = sign(hsp);
 
 //On The Floor Logic
 onTheFloor = true;
@@ -15,11 +17,22 @@ if(!place_meeting(x, y + 1, oWall)) {
 
 //Jump Logic
 if(onTheFloor) && (key_jump) {
-	vsp = -jmpsp;
+	if(hasSword) vsp = -jmpspS;
+	else vsp = -jmpsp;
 }
+
+var _atLedge = false;
 
 //Horizontal Collision
 if(place_meeting(x + hsp, y, oWall)) {
+	
+	var _horiWall = instance_place(x + hsp, y, oWall);
+	
+	if(!position_meeting((sign(hsp) == 1) ? _horiWall.bbox_left : _horiWall.bbox_right, _horiWall.bbox_top -1, oWall)){
+		_atLedge = true;
+		var _ledgeAboveOrBelow = sign (oPlayer.bbox_top - _horiWall.bbox_top);
+	}
+	
 	while(!place_meeting(x + sign(hsp), y, oWall)) {
 		x = x + sign(hsp);
 	}
@@ -36,24 +49,35 @@ if(place_meeting(x, y + vsp, oWall)) {
 }
 y = y + vsp;
 
+if(_atLedge) && (_ledgeAboveOrBelow != sign(oPlayer.bbox_top - _horiWall.bbox_top)) && (!onTheFloor) && (!hasSword) && (canLedgeGrab) {
+	y = _horiWall.bbox_top + sprite_get_yoffset(sPlayerI_BackSword);
+	state = PLAYERSTATE.LEDGE;
+
+}
+
 //Animation
 if(!onTheFloor) {
-	if(key_attack) state = PLAYERSTATE.ATTACK_SLASH_AIR;
+	if(key_attack) && (canAirAttack) && (hasSword) {
+		canAirAttack = false;
+		if(key_down) state = PLAYERSTATE.ATTACK_FINISHER_AIR
+		else state = PLAYERSTATE.ATTACK_SLASH_AIR;
+	}
 	if(sign(vsp) > 0) {
 		sprite_index = spriteFall;
 	}
 	else {
-		sprite_index = spriteJump;
-		if(animationEnd()) image_index = 2;
+		sprite_index = spriteJumping;
+		if(animationEnd()) image_index = 3;
 	}
 }
 else {
+	canAirAttack = true;
 	image_speed = 1;
-	if(key_attack) state = PLAYERSTATE.ATTACK_SLASH;
+	if(key_attack) && (hasSword) state = PLAYERSTATE.ATTACK_SLASH;
 	if(hsp == 0) {
-		if(key_down) {
-			sprite_index = spriteCrouching;
-			mask_index = spriteCrouching;
+		if(key_sword) state = PLAYERSTATE.SWORD;
+		else if(key_down) {
+			state = PLAYERSTATE.CROUCH;
 		}
 		else {
 			mask_index = spriteIdle;
@@ -65,7 +89,5 @@ else {
 		else sprite_index = spriteRunning;
 	}
 }
-
-if(hsp != 0) image_xscale = sign(hsp);
 
 }
