@@ -5,6 +5,8 @@ if(hasSword) {
 	spriteJumping = sPlayerJ_HandSword;
 	spriteFall = sPlayerF_HandSword;
 	spriteSlide = sPlayerS_HandSword;
+	spriteHit = sPlayerH_HandSword;
+	spriteDie = sPlayerD_BackSword;
 }
 else {
 	spriteIdle = sPlayerI_BackSword;
@@ -13,4 +15,6 @@ else {
 	spriteJumping = sPlayerJ_BackSword;
 	spriteFall = sPlayerF_BackSword;
 	spriteSlide = sPlayerS_BackSword;
+	spriteHit = sPlayerH_BackSword;
+	spriteDie = sPlayerD_BackSword;
 }

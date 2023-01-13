@@ -10,7 +10,7 @@ vsp = vsp + grvt;
 if(hsp != 0) image_xscale = sign(hsp);
 
 //On The Floor Logic
-onTheFloor = true;
+var onTheFloor = true;
 if(!place_meeting(x, y + 1, oWall)) {
 	onTheFloor = false;
 }
@@ -25,7 +25,6 @@ var _atLedge = false;
 
 //Horizontal Collision
 if(place_meeting(x + hsp, y, oWall)) {
-	
 	var _horiWall = instance_place(x + hsp, y, oWall);
 	
 	if(!position_meeting((sign(hsp) == 1) ? _horiWall.bbox_left : _horiWall.bbox_right, _horiWall.bbox_top -1, oWall)){
@@ -60,7 +59,10 @@ if(!onTheFloor) {
 	if(key_attack) && (canAirAttack) && (hasSword) {
 		canAirAttack = false;
 		if(key_down) state = PLAYERSTATE.ATTACK_FINISHER_AIR
-		else state = PLAYERSTATE.ATTACK_SLASH_AIR;
+		else {
+			audio_play_sound(AttackAir_1, 0, false);
+			state = PLAYERSTATE.ATTACK_SLASH_AIR;
+		}
 	}
 	if(sign(vsp) > 0) {
 		sprite_index = spriteFall;
@@ -73,9 +75,14 @@ if(!onTheFloor) {
 else {
 	canAirAttack = true;
 	image_speed = 1;
-	if(key_attack) && (hasSword) state = PLAYERSTATE.ATTACK_SLASH;
+	if(key_attack) && (hasSword) {
+		audio_play_sound(Attack_1, 0, false);
+		state = PLAYERSTATE.ATTACK_SLASH;
+	}
 	if(hsp == 0) {
-		if(key_sword) state = PLAYERSTATE.SWORD;
+		if(key_sword) { 
+			state = PLAYERSTATE.SWORD; 
+		}
 		else if(key_down) {
 			state = PLAYERSTATE.CROUCH;
 		}

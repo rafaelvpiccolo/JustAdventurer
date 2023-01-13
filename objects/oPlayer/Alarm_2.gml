@@ -1,4 +1,4 @@
-/// @desc ??
+/// @desc Attack Delay
 
 attackDelay = true;
 

@@ -4,7 +4,8 @@ function PlayerState_Attack_Slash_Air(){
 	vsp = 0;
 	ProccessAttack(sPlayerA1_AirS, sPlayerA1_AirSHB, 1);
 	
-	if(key_attack) && (image_index >= 3) {
+	if(key_attack) && (image_index >= 2) {
+		audio_play_sound(AttackAir_2, 0, false);
 		state = PLAYERSTATE.ATTACK_COMBO_AIR;
 	}
 	else if(key_attack) && (key_down) && (image_index >= 2) {

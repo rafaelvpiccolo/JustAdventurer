@@ -1,5 +1,6 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
+
 function PlayerState_Slide() {
 	if(hasSword) hsp = image_xscale * (wlksp + 1);
 	else hsp = image_xscale * (runsp + 1);
@@ -28,10 +29,16 @@ function PlayerState_Slide() {
 		sprite_index = spriteSlide;
 		mask_index = spriteSlide;
 	}
+	
 	if(place_meeting(x, y - 10, oWall)) {
 		if(image_index >= 2) image_index = 0;
 	}
-	else if(animationEnd()) {
+	else {
+		slideFrame = image_index;
+	}
+	
+	if(animationEnd()) {
+		slideFrame = 0;
 		canSlide = false;
 		mask_index = spriteIdle;
 		state = PLAYERSTATE.FREE;

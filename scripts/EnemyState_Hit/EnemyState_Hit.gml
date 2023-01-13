@@ -1,10 +1,9 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function EnemyState_Hit(){
-	if(sprite_index != sSlimeH) {
-		sprite_index = sSlimeH;
+function EnemyState_Hit(sHit){
+	if(sprite_index != sHit) {
+		sprite_index = sHit;
 		image_index = 0;
-		
 	}
 	hsp = 0.1 * hitFrom;
 	x = x + hsp;
@@ -25,7 +24,6 @@ function EnemyState_Hit(){
 	y = y + vsp;
 	if(hsp != 0) image_xscale = sign(hsp);
 	if(animationEnd()) {
-		sprite_index = sSlime;
 		hsp = 0;
 		state = ENEMYSTATE.FREE;
 	}

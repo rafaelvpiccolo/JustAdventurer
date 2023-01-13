@@ -22,12 +22,14 @@ function PlayerState_Sword(){
 	
 	if(hasSword) {
 		if(sprite_index != sPlayer_Sheathe) {
+			audio_play_sound(Undraw, 0, false);
 			image_index = 0;
 			sprite_index = sPlayer_Sheathe;
 		}
 	}
 	else {
 		if(sprite_index != sPlayer_Draw) {
+			audio_play_sound(Draw, 0, false);
 			image_index = 0;
 			sprite_index = sPlayer_Draw;
 		} 
